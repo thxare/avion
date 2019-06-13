@@ -1,5 +1,13 @@
 import os
 
+asientos=["0"],["0"],["0"],["0"],["0"],["0"]
+tamano_avion = 33
+
+def crear_asientos():
+    for letra in range(6):
+        for fila in range(tamano_avion - 1):
+            asientos[letra].append("0")
+
 def clear():
     if os.name == "posix":
         os.system ("clear")
@@ -17,12 +25,38 @@ def dibujar_menu_princial():
 def comparar_pasajes():
     clear()
     print("COMPRA DE PASAJES")
-    cantidad = input("ingrese la cantidad de pasajes: ")
+    # cantidad = input("ingrese la cantidad de pasajes: ")
+
+    columna = ord(input("ingerese letra "))
+    columna = 70 - columna
+    fila = int(input("ingerese fila "))
+
+    asientos[columna][fila - 1] = 'X'
 
 def mostrar_ubicaciones():
     clear()
     print("UBICACIONES")
+
+    print("  " , end = "")
+    for fila in range(tamano_avion):
+        print(str(fila + 1) + " " , end = "")
+
+    print("")
+    for columna in range(6):
+        print(chr(70 - columna)+" " , end = "")
+        for fila in range(tamano_avion):
+            if (asientos[columna][fila] != "0"):
+                print("X " , end = "")
+            else:
+                print(str(asientos[columna][fila]) + " " , end = "")
+
+            if fila > 9:
+                print(" " , end = "")
+
+        print("")
+
     input("")
+
 
 def ver_listado():
     clear()
@@ -66,6 +100,7 @@ def programa_principal():
         else:
             input("Opción inválida, presione cualquier tecla")
 
+crear_asientos()
 programa_principal()
 
 
