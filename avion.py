@@ -26,12 +26,12 @@ def comparar_pasajes():
     clear()
     print("COMPRA DE PASAJES")
     # cantidad = input("ingrese la cantidad de pasajes: ")
-
+    rut = input("ingrese rut")
     columna = ord(input("ingerese letra "))
     columna = 70 - columna
     fila = int(input("ingerese fila "))
 
-    asientos[columna][fila - 1] = 'X'
+    asientos[columna][fila - 1] = rut
 
 def mostrar_ubicaciones():
     clear()
@@ -58,9 +58,23 @@ def mostrar_ubicaciones():
     input("")
 
 
+def ordenar_lista(lista):
+    lista.sort()
+    return lista
+
 def ver_listado():
     clear()
     print("LISTADO DE PASAJEROS")
+    lista_pasajeros = []
+    for columna in range(6):
+        for fila in range(tamano_avion):
+            if asientos[columna][fila] != "0":
+                lista_pasajeros.append(asientos[columna][fila])
+
+    lista_ordenada = ordenar_lista(lista_pasajeros)
+    for rut in lista_ordenada:
+        print(rut)
+
     input("")
 
 def buscar_pasajero():
